@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Alexey Chernikov"]
   gem.email         = ["alexey.chernikov@gmail.com"]
   gem.description   = %q{Gem to send SMS via sms.ru service}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.summary       = %q{Send SMS via sms.ru service, including support for "stronger auth" API}
+  gem.homepage      = "http://github.com/alexey-chernikov/sms_ru"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
