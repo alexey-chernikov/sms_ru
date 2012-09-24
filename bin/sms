@@ -4,7 +4,26 @@ require 'rubygems'
 require 'sms_ru'
 require 'parseconfig'
 
-config = ParseConfig.new("#{ENV["HOME"]}/.sms_ru_settings")
-sms = SmsRu::SMS.new(:api_id => config["api_id"])
+SETTINGS_FILE = "#{ENV["HOME"]}/.sms_ru_settings"
 
-sms.send :from => config["from"], :to => ARGV[0], :text => ARGV[1]
+if File.exist? SETTINGS_FILE
+  config = ParseConfig.new("#{ENV["HOME"]}/.sms_ru_settings")
+  case ARGV.size
+    when 1
+      to = config["default_to"]
+      text = ARGV[0]
+    when 2
+      to = ARGV[0]
+      text = ARGV[1]
+    else
+      print "Usage: \tsms FROM TEXT\n\t\tsms TEXT\n"
+      exit
+  end
+
+  sms = SmsRu::SMS.new(:api_id => config["api_id"])
+  sms.send :from => config["from"], :to => to, :text => text
+else
+  print "No settings file found. Please create file .sms_ru_settings in your home directory.\n"
+  exit
+end
+
