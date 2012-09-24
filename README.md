@@ -25,8 +25,9 @@ Write file .sms_ru_settings in you home dir with contents:
     api_id = aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
     from = 123456789
 
-where *aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee* is you api_id key
-*123456789* - sender of sms. It will show in sms. Your number or any allowed alias on service.
+where *aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee* is you api_id key; *123456789* - sender of sms. It will show in sms.
+Your number or any allowed alias on service.
+
 After that usage as simple as
 
     sms 123456789 'my text message'
@@ -35,6 +36,8 @@ where *12345689* - receipient of sms
 
 ### Usage in source code
 
+    sms = SmsRu::SMS.new(:api_id => "aaaaaaaaaa-bbbb-ccccc-ddddddd")
+    sms.send(:to => "123123123", :from => "321321321", :text => "Hello world")
 
 ## Contributing
 
